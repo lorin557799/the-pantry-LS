@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org/">
+<head th:replace="fragments :: head"></head>
+<body>
+
+   <header>
+      <div th:replace="fragments :: nav"></div>
+      <div th:replace="fragments :: banner"></div>
+   </header>
+
+<!--   <div class="container body-content p-4">-->
+<!--      <h1 th:text="${recipe.name}"></h1>-->
+<!--      <p th:text="${recipe.description}" class="pt-1"></p>-->
+
+<!--      <div class="row pt-2 pb-5 g-5">-->
+<!--         <div class="col-12 col-md-6">-->
+<!--            <img th:hidden="${recipe.image == null}" th:src="@{'/images/' + ${recipe.image}}" class="img-fluid rounded border shadow p-1">-->
+<!--         </div>-->
+<!--         <div class="col-12 col-md-6">-->
+<!--            <h5 class="text-uppercase">Ingredients</h5>-->
+<!--            <ul class="list-group">-->
+<!--               <li class="list-group-item" th:each="recipeIngredient, rowStat : ${recipeIngredients}" th:style="${rowStat.odd} ? 'background: #f0f0f2;' : 'background: #ffffff;'">-->
+<!--                  <i class="bi bi-check2-circle px-1"></i> <span th:text="${recipeIngredient.amount}"></span> <span th:text="${recipeIngredient.unit}"></span> <span th:text="${recipeIngredient.ingredient}"></span>-->
+<!--               </li>-->
+<!--            </ul>-->
+<!--         </div>-->
+<!--      </div>-->
+<!--      <div class="row">-->
+<!--         <div class="col">-->
+<!--            <h5 class="text-uppercase">Instructions</h5>-->
+<!--            <p style="white-space: pre-line" th:text="${recipe.instructions}"></p>-->
+<!--         </div>-->
+<!--      </div>-->
+
+<!--   </div>-->
+
+   <div class="container body-content p-4">
+      <form th:action="@{/review/add-review}" th:object="${review}" method="post" id="review">
+<!--         <input type="hidden" name="recipeId" th:value="${recipe.id}" />-->
+<!--         <input type="hidden" class="form-control" th:field="${recipe.image}" />-->
+         <div class="input-group mb-2">
+            <span class="input-group-text w-25">Review / Comments</span>
+            <input class="form-control" th:field="${review.name}"/>
+         </div>
+         <div class="input-group mb-2">
+            <span class="input-group-text w-25">Description</span>
+<!--            <textarea class="form-control" aria-label="Description" th:field="${recipe.description}" rows ="4"></textarea>-->
+         </div>
+<!--         <div class="input-group mb-2">-->
+<!--            <span class="input-group-text w-25">Instructions</span>-->
+<!--            <textarea class="form-control" th:field="${recipe.instructions}" rows ="6"></textarea>-->
+<!--         </div>-->
+<!--         <div class="input-group mb-2">-->
+<!--            <span class="input-group-text w-25">Image</span>-->
+<!--            <input th:hidden="${recipe.image != null}" type="file" name="file" class="form-control" />-->
+<!--            <button th:hidden="${recipe.image != null}" class="btn btn-outline-success" type="submit" formaction="upload-image" formenctype="multipart/form-data">Upload Image</button>-->
+<!--            <div th:hidden="${recipe.image == null}" class="form-control vstack gap-1">-->
+<!--               <img th:hidden="${recipe.image == null}" th:src="@{'/images/' + ${recipe.image}}" class="img-thumbnail w-25">-->
+<!--               <button th:hidden="${recipe.image == null}" class="btn btn-outline-danger w-25" type="button" data-bs-toggle="modal" data-bs-target="#deleteImageModal">Delete Image</button>-->
+<!--            </div>-->
+<!--         </div>-->
+         <button class="btn btn-primary" type="submit">Submit Review</button>
+      </form>
+<!--       a review page-->
+<!--       NOte: social buttons set aside until needed 12-09-2022-->
+<!--      <div class="desktopsocial">-->
+<!--         <div class="social">-->
+<!--            <a href="https://twitter.com" target="_blank">-->
+<!--               <svg data-name="Group 1520" xmlns="http://www.w3.org/2000/svg" width="32" height="32">-->
+<!--                  <path data-name="Path 14263" d="M0 0v32h32V0zm22.36 12.74c.01.14.01.28.01.42A9.34 9.34 0 018 21.03a6.807 6.807 0 00.78.05 6.551 6.551 0 004.08-1.41 3.3 3.3 0 01-3.07-2.28 3.179 3.179 0 00.62.06 3.029 3.029 0 00.86-.12 3.284 3.284 0 01-2.63-3.22v-.04a3.252 3.252 0 001.49.41 3.293 3.293 0 01-1.02-4.38 9.323 9.323 0 006.77 3.43 3.081 3.081 0 01-.09-.75 3.283 3.283 0 015.68-2.24 6.471 6.471 0 002.08-.8 3.352 3.352 0 01-1.44 1.82 6.7 6.7 0 001.89-.52 6.794 6.794 0 01-1.64 1.7z"></path>-->
+<!--               </svg>-->
+<!--            </a>-->
+<!--            <a href="https://www.linkedin.com" target="_blank">-->
+<!--               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">-->
+<!--                  <path data-name="Path 14270" d="M0 0v32h32V0zm11.58 23.99H8.26V13.32h3.32zM9.92 11.86a1.92 1.92 0 111.92-1.92 1.92 1.92 0 01-1.92 1.92zM24 23.99h-3.32V18.8c0-1.24-.02-2.83-1.72-2.83-1.73 0-1.99 1.35-1.99 2.74v5.28h-3.31V13.32h3.18v1.46h.05a3.473 3.473 0 013.14-1.72c3.36 0 3.98 2.21 3.98 5.08v5.85z"></path>-->
+<!--               </svg>-->
+<!--            </a>-->
+<!--            <a href="https://www.facebook.com" target="_blank">-->
+<!--               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32">-->
+<!--                  <path data-name="Path 14262" d="M0 0v32h32V0zm20.15 10.66h-1.51c-1.18 0-1.41.56-1.41 1.38v1.82h2.82l-.37 2.84h-2.45V24h-2.94v-7.3h-2.46v-2.84h2.46v-2.1A3.431 3.431 0 0117.95 8a21.572 21.572 0 012.19.11v2.55z"></path>-->
+<!--               </svg>-->
+<!--            </a>-->
+<!--            <a href="https://www.instagram.com" target="_blank">-->
+<!--               <svg data-name="Group 1521" xmlns="http://www.w3.org/2000/svg" width="32" height="32">-->
+<!--                  <path data-name="Path 14264" d="M20.89 16.02a4.87 4.87 0 01-9.74 0 4.939 4.939 0 01.17-1.28h-1.5v6.96a.448.448 0 00.45.45h11.49a.448.448 0 00.45-.45v-6.96h-1.5a4.45 4.45 0 01.18 1.28z"></path>-->
+<!--                  <path data-name="Path 14265" d="M19.56 12.87h2.16a.448.448 0 00.45-.45v-2.16a.448.448 0 00-.45-.45h-2.16a.448.448 0 00-.45.45v2.16a.448.448 0 00.45.45z"></path>-->
+<!--                  <path data-name="Path 14266" d="M16.02 19.09a3.07 3.07 0 10-3.08-3.07 3.073 3.073 0 003.08 3.07z"></path>-->
+<!--                  <path data-name="Path 14267" d="M0 0v32h32V0zm24 22.1a1.9 1.9 0 01-1.9 1.9H9.9A1.9 1.9 0 018 22.1V9.9A1.9 1.9 0 019.9 8h12.2A1.9 1.9 0 0124 9.9z"></path>-->
+<!--               </svg>-->
+<!--            </a>-->
+<!--            <a href="https://www.youtube.com" target="_blank">-->
+<!--               <svg data-name="Group 1522" xmlns="http://www.w3.org/2000/svg" width="32" height="32">-->
+<!--                  <path data-name="Path 14268" d="M14.35 18.08l4.32-2.24-4.32-2.26z"></path>-->
+<!--                  <path data-name="Path 14269" d="M0 0v32h32V0zm24 16.6a24.331 24.331 0 01-.16 2.59 3.5 3.5 0 01-.64 1.59 2.294 2.294 0 01-1.6.68c-2.24.16-5.6.17-5.6.17s-4.16-.04-5.44-.16a2.731 2.731 0 01-1.76-.68 3.5 3.5 0 01-.64-1.59A24.4 24.4 0 018 16.6v-1.21a24.331 24.331 0 01.16-2.59 3.5 3.5 0 01.64-1.59 2.294 2.294 0 011.6-.68c2.24-.16 5.6-.16 5.6-.16s3.36 0 5.6.16a2.294 2.294 0 011.6.68 3.5 3.5 0 01.64 1.59 24.335 24.335 0 01.16 2.59z"></path>-->
+<!--               </svg>-->
+<!--            </a>-->
+<!--         </div>-->
+      </div>
+
+   </div>
+   <footer th:replace="fragments :: footer"></footer>
+
+</body>
+</html>

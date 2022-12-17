@@ -9,6 +9,7 @@ public class Review {
     @GeneratedValue
     private int id;
     private int recipeId;
+    private String name;
     private String comment;
     private int rating;
 
@@ -26,6 +27,14 @@ public class Review {
 
     public void setRecipeId(int recipeId) {
         this.recipeId = recipeId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getComment() {
